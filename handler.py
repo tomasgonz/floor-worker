@@ -33,7 +33,7 @@ def pipeline():
 
 
 def audio(url: str, start: float = 0.0, seconds: float = 0.0) -> np.ndarray:
-    """16 kHz mono samples, decoded by ffmpeg as Boswell decodes them."""
+    """16 kHz mono samples, decoded by ffmpeg."""
     cmd = ["ffmpeg", "-nostdin", "-loglevel", "error", *(["-ss", str(start)] if start else []), "-i", url,
            *(["-t", str(seconds)] if seconds else []), "-ac", "1", "-ar", str(SAMPLE_RATE), "-f", "f32le", "-"]
     done = subprocess.run(cmd, capture_output=True, timeout=3600)
